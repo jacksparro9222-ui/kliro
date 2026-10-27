@@ -6,7 +6,7 @@ const root = join(import.meta.dirname, 'dist');
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.svg': 'image/svg+xml' };
 createServer(async (request, response) => {
   const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-  const relative = normalize(pathname === '/' ? 'index.html' : pathname.slice(1));
+  const relative = normalize(pathname === '/' ? 'index.html' : pathname.endsWith('/') ? `${pathname.slice(1)}index.html` : pathname.slice(1));
   if (relative.startsWith('..')) { response.writeHead(403).end(); return; }
   try {
     const file = await readFile(join(root, relative));

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://klirolabs-studio.jacksparro9222.chatgpt.site/sitemap.xml
