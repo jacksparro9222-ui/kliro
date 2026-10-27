@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { services, industries } from './site-content.mjs';
 
 const root = join(import.meta.dirname, 'dist');
-const origin = 'https://klirolabs-studio.jacksparro9222.chatgpt.site';
+const origin = process.env.SITE_ORIGIN || 'https://klirolabs-studio.jacksparro9222.chatgpt.site';
 const servicePath = slug => `/services/${slug}/`;
 const industryPath = slug => `/industries/${slug}/`;
 const serviceBySlug = Object.fromEntries(services.map(item => [item.slug, item]));
