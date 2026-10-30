@@ -1,0 +1,23 @@
+.client-strip{background:#101827;color:#fff;padding:34px 0}
+.client-strip-light{background:#eef2fa;color:#151a27}
+.client-strip-inner{display:flex;align-items:center;justify-content:space-between;gap:42px}
+.client-label{display:block;color:#9cb6ff;font-size:10px;letter-spacing:.18em;font-weight:800;margin-bottom:7px}
+.client-strip-light .client-label{color:#2457f5}
+.client-strip p{margin:0;color:#cbd3e2;font-size:13px;font-weight:600}
+.client-strip-light p{color:#59677b}
+.client-strip ul{display:flex;align-items:center;justify-content:flex-end;gap:46px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.client-strip li{font:800 clamp(17px,2vw,25px)/1.15 'Manrope',sans-serif;letter-spacing:-.045em;white-space:nowrap}
+.india-section{background:#fff;border-top:1px solid #e6eaf2;border-bottom:1px solid #e6eaf2}
+.india-grid,.guide-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:start}
+.india-grid h2,.guide-intro h2{font-size:clamp(38px,4.2vw,58px);line-height:1.12;margin:0;letter-spacing:-.06em}
+.india-grid h2 em,.guide-intro h2 em{font-style:normal;color:#2457f5}
+.india-grid p,.guide-intro p{color:#5f6b7c;font-size:16px;line-height:1.8;margin:0 0 20px}
+.india-links{display:flex;flex-wrap:wrap;gap:16px 30px;margin-top:27px}
+.guide-date{font-size:12px!important;font-weight:700;letter-spacing:.03em;color:#8793a6!important;margin-top:30px!important}
+.guide-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.guide-list article{display:grid;grid-template-columns:42px 1fr;gap:16px;background:#fff;border:1px solid #dde5f0;border-radius:12px;padding:28px;min-height:220px}
+.guide-list article>span{font-size:11px;letter-spacing:.09em;font-weight:800;color:#2457f5;padding-top:7px}
+.guide-list h3{font-size:21px;letter-spacing:-.045em;margin:0 0 12px}
+.guide-list p{font-size:14px;color:#647184;line-height:1.7;margin:0}
+@media(max-width:900px){.client-strip-inner,.india-grid,.guide-intro{display:block}.client-strip ul{justify-content:flex-start;margin-top:22px;gap:20px 35px}.india-grid>div:first-child,.guide-intro>div:first-child{margin-bottom:35px}}
+@media(max-width:600px){.client-strip{padding:30px 0}.client-strip li{font-size:18px}.guide-list{grid-template-columns:1fr}.guide-list article{min-height:0}.india-grid p,.guide-intro p{font-size:15px}}

@@ -1,9 +1,9 @@
 export const services = [
   {
-    slug: 'enterprise-web-development', title: 'Enterprise web development', short: 'Websites and web platforms built for complex organizations.',
+    slug: 'enterprise-web-development', title: 'Enterprise web development', seoTitle: 'Enterprise Web Development in India | Klirolabs', short: 'Websites and web platforms built for complex organizations.',
     eyebrow: '01 / WEB ENGINEERING', accent: 'Your website should work as hard as your business.',
     intro: 'Plan, design and develop a digital presence that supports multiple audiences, complex content and the next stage of growth.',
-    description: 'Klirolabs builds enterprise websites and web platforms with clear information architecture, thoughtful UX and dependable engineering.',
+    description: 'Bengaluru-based Klirolabs builds custom enterprise websites and web platforms for organizations across India, with clear UX, content structure and dependable engineering.',
     problems: [
       ['An outdated first impression', 'Your site no longer reflects the quality or scale of your business.'],
       ['Content that is hard to manage', 'Teams struggle to publish consistently across products, regions or departments.'],
@@ -24,10 +24,10 @@ export const services = [
     ], related: ['custom-software-development', 'maintenance-optimization'], industries: ['manufacturing', 'saas-technology']
   },
   {
-    slug: 'custom-software-development', title: 'Custom software development', short: 'Software shaped around the way your business actually works.',
+    slug: 'custom-software-development', title: 'Custom software development', seoTitle: 'Custom Software Development in India | Klirolabs', short: 'Software shaped around the way your business actually works.',
     eyebrow: '02 / SOFTWARE ENGINEERING', accent: 'Make the complex feel effortless.',
     intro: 'Turn fragmented workflows, manual handoffs and limiting tools into software designed for your people and your goals.',
-    description: 'Explore custom software development for internal platforms, customer portals and business-critical workflows with Klirolabs.',
+    description: 'Klirolabs develops custom software in India for internal platforms, customer portals and business workflows, from discovery through launch and improvement.',
     problems: [
       ['Work trapped in spreadsheets', 'Important processes rely on manual updates and disconnected information.'],
       ['Tools that do not fit', 'Off-the-shelf systems force your team into compromises and repeated workarounds.'],
@@ -48,10 +48,10 @@ export const services = [
     ], related: ['product-design-ux', 'software-modernization'], industries: ['manufacturing', 'saas-technology']
   },
   {
-    slug: 'ecommerce-development', title: 'E-commerce development', short: 'Commerce experiences designed for how your customers buy.',
+    slug: 'ecommerce-development', title: 'E-commerce development', seoTitle: 'E-commerce Website Development in India | Klirolabs', short: 'Commerce experiences designed for how your customers buy.',
     eyebrow: '03 / DIGITAL COMMERCE', accent: 'A better journey from discovery to checkout.',
     intro: 'Build a commerce experience that makes products easier to find, decisions easier to make and operations easier to run.',
-    description: 'Klirolabs creates tailored e-commerce storefronts and commerce workflows that connect customer experience with business operations.',
+    description: 'Klirolabs builds custom e-commerce websites in India, connecting product discovery and checkout with the operations behind a growing retail business.',
     problems: [
       ['Customers cannot find the right product', 'Complex catalogues and weak navigation make browsing harder than it should be.'],
       ['Checkout adds unnecessary friction', 'The path from consideration to purchase has too many obstacles.'],
