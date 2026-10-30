@@ -23,13 +23,13 @@ function nav() {
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <details class="nav-group"><summary>Services <span aria-hidden="true">⌄</span></summary><div class="nav-panel"><strong>WHAT WE BUILD</strong>${navItems(services.map(item => ({...item, href: servicePath(item.slug)})))}</div></details>
       <details class="nav-group"><summary>Industries <span aria-hidden="true">⌄</span></summary><div class="nav-panel compact"><strong>WHERE WE FOCUS</strong>${navItems(industries.map(item => ({...item, href: industryPath(item.slug)})))}</div></details>
-      <a href="/case-studies/">Case studies</a><a href="/about/">About</a><a href="/process/">Process</a>
+      <a href="/case-studies/">Case studies</a><a href="/about/">About</a><a href="/careers/">Careers</a><a href="/process/">Process</a>
       <a class="nav-contact" href="/contact/">Let's talk <span aria-hidden="true">↗</span></a>
     </nav></div></header>`;
 }
 
 function footer() {
-  return `<footer class="site-footer"><div class="shell footer-grid"><div class="footer-identity"><a class="brand" href="/" aria-label="Klirolabs home"><img src="/assets/klirolabs-logo.png" alt="Klirolabs" width="2172" height="724"></a><p>Custom websites and software from Bengaluru, India.</p><a class="footer-mail" href="mailto:hello@klirolabs.com">hello@klirolabs.com ↗</a></div><div><h2>Services</h2>${services.map(item => `<a href="${servicePath(item.slug)}">${esc(item.title)}</a>`).join('')}<a href="${manufacturingCommercePath}">B2B commerce for manufacturers</a></div><div><h2>Explore</h2>${industries.map(item => `<a href="${industryPath(item.slug)}">${esc(item.title)}</a>`).join('')}<a href="/case-studies/">Selected clients</a><a href="${guidePath}">Choosing a web partner</a><a href="/process/">Our process</a></div><div><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/contact/">Discuss a project</a></div></div><div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Klirolabs. All rights reserved.</span><span>Bengaluru, India</span><a href="#top">Back to top ↑</a></div></footer>`;
+  return `<footer class="site-footer"><div class="shell footer-grid"><div class="footer-identity"><a class="brand" href="/" aria-label="Klirolabs home"><img src="/assets/klirolabs-logo.png" alt="Klirolabs" width="2172" height="724"></a><p>Custom websites and software from Bengaluru, India.</p><a class="footer-mail" href="mailto:hello@klirolabs.com">hello@klirolabs.com ↗</a></div><div><h2>Services</h2>${services.map(item => `<a href="${servicePath(item.slug)}">${esc(item.title)}</a>`).join('')}<a href="${manufacturingCommercePath}">B2B commerce for manufacturers</a></div><div><h2>Explore</h2>${industries.map(item => `<a href="${industryPath(item.slug)}">${esc(item.title)}</a>`).join('')}<a href="/case-studies/">Selected clients</a><a href="${guidePath}">Choosing a web partner</a><a href="/process/">Our process</a></div><div><h2>Company</h2><a href="/about/">About</a><a href="/careers/">Careers</a><a href="/contact/">Contact</a><a href="/contact/">Discuss a project</a></div></div><div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Klirolabs. All rights reserved.</span><span>Bengaluru, India</span><a href="#top">Back to top ↑</a></div></footer>`;
 }
 
 function layout({path, title, description, main, kind = 'page'}) {
@@ -52,9 +52,9 @@ function graphic(type = 'platform') {
   return `<div class="product-art ${type}" aria-hidden="true"><div class="art-halo"></div><div class="art-window"><div class="art-toolbar"><span class="art-dots"><i></i><i></i><i></i></span><span>klirolabs / digital craft</span><span>⌘</span></div><div class="art-body"><div class="art-sidebar"><b>✦</b><i></i><i></i><i></i></div><div class="art-main"><small>IDEAS INTO IMPACT</small><strong>Build what<br><em>matters.</em></strong><div class="art-module"><i></i><i></i><i></i><i></i></div></div></div></div><span class="art-float">✦ &nbsp; Designed to move you forward</span></div>`;
 }
 
-function hero({crumb, eyebrowText, title, accent, intro, visual = 'platform', home = false}) {
+function hero({crumb, eyebrowText, title, accent, intro, visual = 'platform', home = false, actions}) {
   const heading = home ? `<h1>${esc(title)} <em>${esc(accent)}</em></h1>` : `<h1>${esc(title)}<br><em>${esc(accent)}</em></h1>`;
-  return `<section class="hero${home ? ' home-hero' : ''}"><div class="shell hero-grid"><div class="hero-copy">${crumb ? `<div class="breadcrumb"><a href="/">Home</a><span>/</span><span>${esc(crumb)}</span></div>` : ''}${eyebrow(eyebrowText)}${heading}<p class="hero-intro">${esc(intro)}</p><div class="hero-actions">${cta()}${home ? link('/case-studies/', 'Explore our work', 'secondary-link') : link('/process/', 'How we work', 'secondary-link')}</div></div>${graphic(visual)}</div><div class="shell hero-tail"><span>${home ? 'DIGITAL ENGINEERING STUDIO' : esc(eyebrowText)}</span><span>STRATEGY / DESIGN / DEVELOPMENT</span></div></section>`;
+  return `<section class="hero${home ? ' home-hero' : ''}"><div class="shell hero-grid"><div class="hero-copy">${crumb ? `<div class="breadcrumb"><a href="/">Home</a><span>/</span><span>${esc(crumb)}</span></div>` : ''}${eyebrow(eyebrowText)}${heading}<p class="hero-intro">${esc(intro)}</p><div class="hero-actions">${actions || `${cta()}${home ? link('/case-studies/', 'Explore our work', 'secondary-link') : link('/process/', 'How we work', 'secondary-link')}`}</div></div>${graphic(visual)}</div><div class="shell hero-tail"><span>${home ? 'DIGITAL ENGINEERING STUDIO' : esc(eyebrowText)}</span><span>STRATEGY / DESIGN / DEVELOPMENT</span></div></section>`;
 }
 
 function sectionHead(kicker, title, text = '') { return `<div class="section-head">${eyebrow(kicker)}<h2>${title}</h2>${text ? `<p>${esc(text)}</p>` : ''}</div>`; }
@@ -151,6 +151,26 @@ function aboutPage() {
   return layout({path:'/about/',title:'About Klirolabs | Bengaluru Web & Software Company',description:'Meet Klirolabs, a Bengaluru-based web development and custom software company. Our work includes website and software engagements for RoyalOak India, IKEA and Ford India.',main,kind:'about'});
 }
 
+function careersPage() {
+  const careersMail = 'mailto:hello@klirolabs.com?subject=Careers%20at%20Klirolabs';
+  const main = `${hero({crumb:'Careers',eyebrowText:'CAREERS AT KLIROLABS',title:'Build work that',accent:'moves businesses forward.',intro:'Interested in shaping useful websites, thoughtful digital products and custom software? Get to know the work at Klirolabs and how to introduce yourself.',visual:'about',actions:`<a class="btn btn-primary" href="#opportunities">Explore opportunities <span aria-hidden="true">↘</span></a>${link('/about/','Get to know us','secondary-link')}`})}
+  <section class="section"><div class="shell guide-intro"><div>${eyebrow('WHY THE WORK MATTERS')}<h2>Curiosity meets <em>craft.</em></h2></div><div><p>Klirolabs works across custom websites, e-commerce experiences and software built around real business needs. The best work begins by understanding the people who will use it and the teams who will keep it running.</p><p>If you enjoy turning an unclear challenge into a clear plan, caring about the details and learning across design and engineering, we would like you to know what we do. We are based in Bengaluru, India.</p></div></div></section>
+  <section class="section tinted-section"><div class="shell">${sectionHead('WHERE YOU COULD CONTRIBUTE','Different skills. <em>Shared purpose.</em>','Our work spans the thinking, design and engineering behind digital experiences.')}${capabilityCards([
+    ['Web development','Create fast, accessible websites with clear content structures and useful journeys.'],
+    ['Software engineering','Turn business workflows into dependable tools, platforms and integrations.'],
+    ['Product design and UX','Make complex tasks easier to understand through research, flows and considered interfaces.'],
+    ['Project collaboration','Connect client goals, delivery decisions and the practical details that help good work ship.']
+  ])}</div></section>
+  <section class="section career-opportunities" id="opportunities"><div class="shell career-opportunities-grid"><div>${eyebrow('OPEN OPPORTUNITIES')}<h2>Find your next <em>challenge.</em></h2><p>We do not have any publicly listed openings on this page right now. When a role is available, its scope and application details will appear here.</p></div><div class="career-interest"><span>INTRODUCE YOURSELF</span><h3>Think your work could fit?</h3><p>Send a short introduction with the area you work in, a portfolio or examples of your work, and a link to your résumé if you would like us to consider you for future opportunities.</p><a class="btn btn-orange" href="${careersMail}">Email Klirolabs <span aria-hidden="true">↗</span></a><small>Opens your email app. You choose what to share before sending.</small></div></div></section>
+  <section class="section tinted-section"><div class="shell">${sectionHead('BEFORE YOU REACH OUT','Show us how you <em>think.</em>')}${issueCards([
+    ['Your focus','Tell us whether your work is in development, design, product thinking or another relevant area.'],
+    ['Your work','Share a few examples and explain the problem you helped solve and your contribution.'],
+    ['Your context','Include your location and the kind of opportunity you are looking for.']
+  ])}</div></section>
+  <section class="section related-section"><div class="shell">${sectionHead('GET TO KNOW KLIROLABS','See what drives the <em>work.</em>')}<div class="related-grid"><a class="related-card" href="/about/"><span>COMPANY ↗</span><h3>About Klirolabs</h3><p>Learn what we believe and how we approach digital work.</p><b aria-hidden="true">↗</b></a><a class="related-card" href="/process/"><span>PROCESS ↗</span><h3>How we work</h3><p>Explore the decisions and stages behind our projects.</p><b aria-hidden="true">↗</b></a><a class="related-card" href="/case-studies/"><span>WORK ↗</span><h3>Selected clients</h3><p>See the kinds of organizations we have worked with.</p><b aria-hidden="true">↗</b></a></div></div></section>`;
+  return layout({path:'/careers/',title:'Careers at Klirolabs | Web & Software Development',description:'Explore careers at Klirolabs in Bengaluru. Learn about our website, software and product design work, and how to share your profile for future opportunities.',main,kind:'careers'});
+}
+
 function processPage() {
   const phases = [
     ['01','Discover','Understand the problem.','We learn about your goals, audiences, workflows, constraints and what success would mean.','Shared goals, priorities and an initial scope.'],
@@ -195,7 +215,7 @@ function contactPage() {
   return layout({path:'/contact/',title:'Contact Klirolabs | Web Development in Bengaluru',description:'Contact Klirolabs in Bengaluru to discuss a custom website, software platform, e-commerce experience or modernization project anywhere in India.',main,kind:'contact'});
 }
 
-const pages = [{path:'/',html:homePage()},...services.map(item=>({path:servicePath(item.slug),html:servicePage(item)})),{path:manufacturingCommercePath,html:manufacturingCommercePage()},...industries.map(item=>({path:industryPath(item.slug),html:industryPage(item)})),{path:'/case-studies/',html:casesPage()},{path:'/about/',html:aboutPage()},{path:'/process/',html:processPage()},{path:guidePath,html:guidePage()},{path:'/contact/',html:contactPage()}];
+const pages = [{path:'/',html:homePage()},...services.map(item=>({path:servicePath(item.slug),html:servicePage(item)})),{path:manufacturingCommercePath,html:manufacturingCommercePage()},...industries.map(item=>({path:industryPath(item.slug),html:industryPage(item)})),{path:'/case-studies/',html:casesPage()},{path:'/about/',html:aboutPage()},{path:'/careers/',html:careersPage()},{path:'/process/',html:processPage()},{path:guidePath,html:guidePage()},{path:'/contact/',html:contactPage()}];
 for (const page of pages) {
   const directory = join(root, page.path.slice(1));
   await mkdir(directory, { recursive: true });

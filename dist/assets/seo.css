@@ -19,5 +19,17 @@
 .guide-list article>span{font-size:11px;letter-spacing:.09em;font-weight:800;color:#2457f5;padding-top:7px}
 .guide-list h3{font-size:21px;letter-spacing:-.045em;margin:0 0 12px}
 .guide-list p{font-size:14px;color:#647184;line-height:1.7;margin:0}
+.career-opportunities{background:#fff}
+.career-opportunities-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:90px;align-items:center}
+.career-opportunities h2{font-size:clamp(40px,4.2vw,60px);line-height:1.13;letter-spacing:-.06em;margin:0 0 22px}
+.career-opportunities h2 em{font-style:normal;color:#2457f5}
+.career-opportunities-grid>div:first-child>p{color:#5f6b7c;font-size:16px;line-height:1.8;max-width:450px}
+.career-interest{padding:48px;background:#101827;color:#fff;border-radius:14px;box-shadow:22px 22px 0 #e9efff}
+.career-interest>span{font-size:10px;font-weight:800;letter-spacing:.16em;color:#a9bcff}
+.career-interest h3{font-size:clamp(30px,3vw,42px);line-height:1.16;letter-spacing:-.055em;margin:30px 0 15px}
+.career-interest p{color:#cad4e6;font-size:15px;line-height:1.8;max-width:540px}
+.career-interest .btn{margin:15px 0 20px}
+.career-interest small{display:block;color:#aab9d1;font-size:11px;line-height:1.5}
 @media(max-width:900px){.client-strip-inner,.india-grid,.guide-intro{display:block}.client-strip ul{justify-content:flex-start;margin-top:22px;gap:20px 35px}.india-grid>div:first-child,.guide-intro>div:first-child{margin-bottom:35px}}
-@media(max-width:600px){.client-strip{padding:30px 0}.client-strip li{font-size:18px}.guide-list{grid-template-columns:1fr}.guide-list article{min-height:0}.india-grid p,.guide-intro p{font-size:15px}}
+@media(max-width:900px){.career-opportunities-grid{grid-template-columns:1fr;gap:28px}}
+@media(max-width:600px){.client-strip{padding:30px 0}.client-strip li{font-size:18px}.guide-list{grid-template-columns:1fr}.guide-list article{min-height:0}.india-grid p,.guide-intro p{font-size:15px}.career-interest{padding:30px;box-shadow:10px 10px 0 #e9efff}}
