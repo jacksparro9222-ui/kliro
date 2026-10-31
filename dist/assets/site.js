@@ -1,18 +1,104 @@
-const menuButton = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.site-nav');
-menuButton?.addEventListener('click', () => {
-  const open = menuButton.getAttribute('aria-expanded') !== 'true';
-  menuButton.setAttribute('aria-expanded', String(open));
-  menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-  menu.classList.toggle('open', open);
-});
-menu?.querySelectorAll('a').forEach(anchor => anchor.addEventListener('click', () => {
-  menu.classList.remove('open');
+const header = document.querySelector('.mega-header');
+const menuButton = document.querySelector('.mega-toggle');
+const menu = document.querySelector('.mega-nav');
+const groups = [...document.querySelectorAll('.mega-item')];
+const mobileNav = window.matchMedia('(max-width: 820px)');
+
+function syncMenuLayout() {
+  groups.forEach(group => {
+    const categories = [...group.querySelectorAll('.mega-category')];
+    const views = [...group.querySelectorAll('.mega-view')];
+    const viewColumn = group.querySelector('.mega-views');
+    views.forEach((view, index) => {
+      if (mobileNav.matches) categories[index].after(view);
+      else viewColumn.append(view);
+    });
+  });
+}
+syncMenuLayout();
+
+function selectCategory(group, index) {
+  const wasOpen = group.querySelectorAll('.mega-category')[index].classList.contains('is-active');
+  const selected = mobileNav.matches && wasOpen ? -1 : index;
+  group.querySelectorAll('.mega-category').forEach((button, position) => {
+    const active = position === selected;
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-expanded', String(active));
+    button.querySelector('span').textContent = active ? '−' : '+';
+  });
+  group.querySelectorAll('.mega-view').forEach((view, position) => { view.hidden = position !== selected; });
+}
+
+function closeNav(restoreFocus = false) {
+  const trigger = groups.find(group => group.classList.contains('is-open'))?.querySelector('.mega-trigger');
+  groups.forEach(group => {
+    group.classList.remove('is-open');
+    group.querySelector('.mega-trigger').setAttribute('aria-expanded', 'false');
+    group.querySelector('.mega-panel').hidden = true;
+  });
+  menu?.classList.remove('is-open', 'has-section');
   menuButton?.setAttribute('aria-expanded', 'false');
-}));
-document.addEventListener('click', event => {
-  if (!event.target.closest('.nav-group')) document.querySelectorAll('.nav-group[open]').forEach(group => group.removeAttribute('open'));
+  menuButton?.setAttribute('aria-label', 'Open navigation');
+  document.body.classList.remove('nav-open');
+  if (restoreFocus) (mobileNav.matches ? menuButton : trigger)?.focus();
+}
+
+function openGroup(group) {
+  groups.forEach(item => {
+    const active = item === group;
+    item.classList.toggle('is-open', active);
+    item.querySelector('.mega-trigger').setAttribute('aria-expanded', String(active));
+    item.querySelector('.mega-panel').hidden = !active;
+  });
+  if (mobileNav.matches) menu.classList.add('has-section');
+}
+
+menuButton?.addEventListener('click', () => {
+  if (menu.classList.contains('is-open')) return closeNav();
+  menu.classList.add('is-open');
+  menuButton.setAttribute('aria-expanded', 'true');
+  menuButton.setAttribute('aria-label', 'Close navigation');
+  document.body.classList.add('nav-open');
 });
+
+groups.forEach(group => {
+  const trigger = group.querySelector('.mega-trigger');
+  trigger.addEventListener('click', () => {
+    if (group.classList.contains('is-open') && !mobileNav.matches) closeNav();
+    else openGroup(group);
+  });
+  trigger.addEventListener('pointerenter', event => {
+    if (!mobileNav.matches && event.pointerType === 'mouse') openGroup(group);
+  });
+  group.querySelector('.mega-back').addEventListener('click', () => {
+    group.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    group.querySelector('.mega-panel').hidden = true;
+    menu.classList.remove('has-section');
+    trigger.focus();
+  });
+  group.querySelectorAll('.mega-category').forEach((button, index) => {
+    button.addEventListener('click', () => selectCategory(group, index));
+    button.addEventListener('pointerenter', event => {
+      if (!mobileNav.matches && event.pointerType === 'mouse') selectCategory(group, index);
+    });
+  });
+});
+
+header?.addEventListener('pointerleave', event => {
+  if (!mobileNav.matches && event.pointerType === 'mouse') closeNav();
+});
+document.addEventListener('click', event => {
+  if (!event.target.closest('.mega-header')) closeNav();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && (menu?.classList.contains('is-open') || groups.some(group => group.classList.contains('is-open')))) {
+    event.preventDefault();
+    closeNav(true);
+  }
+});
+menu?.querySelectorAll('a').forEach(anchor => anchor.addEventListener('click', () => closeNav()));
+mobileNav.addEventListener('change', () => { closeNav(); syncMenuLayout(); });
 document.querySelector('#contact-form')?.addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget;
