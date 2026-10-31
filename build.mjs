@@ -10,6 +10,18 @@ const servicePath = slug => `/services/${slug}/`;
 const industryPath = slug => `/industries/${slug}/`;
 const serviceBySlug = Object.fromEntries(services.map(item => [item.slug, item]));
 const industryBySlug = Object.fromEntries(industries.map(item => [item.slug, item]));
+const offices = [
+  {
+    name: 'United States · Austin',
+    address: '801 Barton Springs Rd, Austin, TX 78704, United States',
+    postal: { '@type': 'PostalAddress', streetAddress: '801 Barton Springs Rd', addressLocality: 'Austin', addressRegion: 'TX', postalCode: '78704', addressCountry: 'US' }
+  },
+  {
+    name: 'India · Bengaluru',
+    address: 'Cowrks No 135/1, Residency Rd, Ward No.76, Ashok Nagar, Bengaluru, Karnataka 560025, India',
+    postal: { '@type': 'PostalAddress', streetAddress: 'Cowrks No 135/1, Residency Rd, Ward No.76, Ashok Nagar', addressLocality: 'Bengaluru', addressRegion: 'Karnataka', postalCode: '560025', addressCountry: 'IN' }
+  }
+];
 const esc = value => String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const link = (href, label, cls = '') => `<a href="${href}"${cls ? ` class="${cls}"` : ''}>${esc(label)} <span aria-hidden="true">↗</span></a>`;
 const cta = (label = 'Discuss your project') => `<a class="btn btn-primary" href="/contact/">${esc(label)} <span aria-hidden="true">↗</span></a>`;
@@ -36,7 +48,7 @@ function layout({path, title, description, main, kind = 'page'}) {
   const full = `${origin}${path}`;
   const service = services.find(item => servicePath(item.slug) === path);
   const structured = path === '/' ? [
-    { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${origin}/#organization`, name: 'Klirolabs', url: origin, logo: `${origin}/assets/klirolabs-logo.png`, email: 'hello@klirolabs.com', location: [{ '@type': 'Place', name: 'Bengaluru, India' }, { '@type': 'Place', name: 'United States' }] },
+    { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${origin}/#organization`, name: 'Klirolabs', url: origin, logo: `${origin}/assets/klirolabs-logo.png`, email: 'hello@klirolabs.com', location: offices.map(office => ({ '@type': 'Place', name: office.name, address: office.postal })) },
     { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Klirolabs', url: origin }
   ] : [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${origin}/` },
@@ -217,8 +229,9 @@ function guidePage() {
 function contactPage() {
   const main = `<section class="contact-hero"><div class="shell contact-layout"><div class="contact-copy"><div class="breadcrumb"><a href="/">Home</a><span>/</span><span>Contact</span></div>${eyebrow('LET’S BUILD SOMETHING',true)}<h1>Tell us what<br>you’re <em>building.</em></h1><p>Whether you have a detailed brief or the beginning of an idea, start with the challenge. We’ll take it from there.</p><p>With offices in Bengaluru and the United States, we work with businesses on custom websites and software.</p><a class="contact-address" href="mailto:hello@klirolabs.com">hello@klirolabs.com <span aria-hidden="true">↗</span></a><div class="contact-note"><span>✦</span> Websites. Software. The next important move.</div></div>
   <form id="contact-form" class="contact-form"><div class="form-heading"><span>PROJECT ENQUIRY</span><strong>Let’s start a conversation.</strong></div><div class="form-pair"><label>Your name <input name="name" autocomplete="name" required placeholder="Your name"></label><label>Work email <input name="email" type="email" autocomplete="email" required placeholder="you@company.com"></label></div><div class="form-pair"><label>Company <input name="company" autocomplete="organization" placeholder="Company name"></label><label>Project type <select name="service" required><option value="" disabled selected>Select a service</option>${services.map(item=>`<option>${esc(item.title)}</option>`).join('')}<option>Not sure yet</option></select></label></div><label>What are you looking to achieve? <textarea name="project" rows="5" required placeholder="Tell us about your goals, current challenges or the idea you want to explore."></textarea></label><button class="btn btn-orange" type="submit">Prepare enquiry <span aria-hidden="true">↗</span></button><p class="form-note">This prepares an email to hello@klirolabs.com in your email app. Review it there before sending.</p></form></div></section>
+  <section class="section offices-section" id="offices"><div class="shell">${sectionHead('OUR OFFICES','Find us in <em>Austin and Bengaluru.</em>')}<div class="office-grid">${offices.map((office, index) => `<article class="office-card"><span class="office-number">0${index + 1} / OFFICE</span><h3>${esc(office.name)}</h3><address>${esc(office.address)}</address><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.address)}" target="_blank" rel="noopener noreferrer" aria-label="View ${esc(office.name)} on Google Maps">View on Google Maps <span aria-hidden="true">↗</span></a></article>`).join('')}</div></div></section>
   <section class="section contact-extras"><div class="shell">${sectionHead('BEFORE WE TALK','A little context helps us start <em>well.</em>')}${issueCards([['The goal','What would a successful project make easier or better?'],['The starting point','Is this a new idea, an existing product or an urgent challenge?'],['The constraints','Any timing, systems or requirements we should understand early?']])}</div></section>`;
-  return layout({path:'/contact/',title:'Contact Klirolabs | Discuss Your Web or Software Project',description:'Contact Klirolabs to discuss a custom website, software platform, e-commerce experience or modernization project. Offices in Bengaluru and the United States.',main,kind:'contact'});
+  return layout({path:'/contact/',title:'Contact Klirolabs | Discuss Your Web or Software Project',description:'Contact Klirolabs about custom websites and software. Visit our offices at 801 Barton Springs Rd, Austin, TX, or Residency Rd, Bengaluru.',main,kind:'contact'});
 }
 
 const pages = [{path:'/',html:homePage()},...services.map(item=>({path:servicePath(item.slug),html:servicePage(item)})),{path:manufacturingCommercePath,html:manufacturingCommercePage()},...industries.map(item=>({path:industryPath(item.slug),html:industryPage(item)})),{path:'/case-studies/',html:casesPage()},{path:'/about/',html:aboutPage()},{path:'/careers/',html:careersPage()},{path:'/process/',html:processPage()},{path:guidePath,html:guidePage()},{path:'/contact/',html:contactPage()}];
