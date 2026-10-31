@@ -4,7 +4,7 @@ import { services, industries } from './site-content.mjs';
 
 const root = join(import.meta.dirname, 'dist');
 const origin = process.env.SITE_ORIGIN || 'https://www.klirolabs.com';
-const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT || '';
+const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT || 'https://formspree.io/f/xjyyelqb';
 if (formspreeEndpoint && !/^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(formspreeEndpoint)) {
   throw new Error('FORMSPREE_ENDPOINT must be a Formspree form URL, such as https://formspree.io/f/xxxxxxxx');
 }

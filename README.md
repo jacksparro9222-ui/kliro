@@ -12,4 +12,4 @@ The build uses `SITE_ORIGIN` for canonical links, social metadata, structured da
 
 Vercel uses `vercel.json` to run the build and serve `dist/`. The production site is [www.klirolabs.com](https://www.klirolabs.com/).
 
-Set `FORMSPREE_ENDPOINT` to the account's form URL (for example, `https://formspree.io/f/xxxxxxxx`) to submit contact enquiries directly to Formspree. Without that setting, the contact form prepares an email to `hello@klirolabs.com` in the visitor's email app.
+The contact form submits enquiries to the Klirolabs Formspree endpoint and shows a success or error message. `FORMSPREE_ENDPOINT` can override the endpoint used at build time if the account's form changes.
