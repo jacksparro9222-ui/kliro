@@ -64,8 +64,7 @@ menuButton?.addEventListener('click', () => {
 groups.forEach(group => {
   const trigger = group.querySelector('.mega-trigger');
   trigger.addEventListener('click', () => {
-    if (group.classList.contains('is-open') && !mobileNav.matches) closeNav();
-    else openGroup(group);
+    openGroup(group);
   });
   trigger.addEventListener('pointerenter', event => {
     if (!mobileNav.matches && event.pointerType === 'mouse') openGroup(group);
