@@ -1,12 +1,21 @@
-.client-strip{background:#101827;color:#fff;padding:34px 0}
+.client-strip{background:#101827;color:#fff;padding:36px 0 34px;overflow:hidden}
 .client-strip-light{background:#eef2fa;color:#151a27}
-.client-strip-inner{display:flex;align-items:center;justify-content:space-between;gap:42px}
+.client-strip-inner{margin-bottom:24px}
 .client-label{display:block;color:#9cb6ff;font-size:10px;letter-spacing:.18em;font-weight:800;margin-bottom:7px}
 .client-strip-light .client-label{color:#2457f5}
 .client-strip p{margin:0;color:#cbd3e2;font-size:13px;font-weight:600}
 .client-strip-light p{color:#59677b}
-.client-strip ul{display:flex;align-items:center;justify-content:flex-end;gap:46px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-.client-strip li{font:800 clamp(17px,2vw,25px)/1.15 'Manrope',sans-serif;letter-spacing:-.045em;white-space:nowrap}
+.client-marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.client-track{display:flex;width:max-content;animation:client-scroll 20s linear infinite;will-change:transform}
+.client-marquee:hover .client-track{animation-play-state:paused}
+.client-logo-list{display:flex;align-items:center;justify-content:space-around;flex:0 0 max(100vw,840px);list-style:none;margin:0;padding:0}
+.client-logo{display:grid;place-items:center;flex:0 0 210px;height:92px;background:#fff;border:1px solid #e8edf6;border-radius:12px;box-shadow:0 14px 30px #060e2524}
+.client-logo img{display:block;width:auto;height:auto;max-width:77%;max-height:64px;object-fit:contain}
+.client-logo.royaloak img{max-width:79%;max-height:66px}
+.client-logo.ikea img{width:132px;max-height:56px}
+.client-logo.ford img{width:148px;max-height:68px}
+@keyframes client-scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.client-marquee{overflow:visible;mask-image:none}.client-track{width:auto;animation:none}.client-logo-list{flex:1 1 auto;min-width:0;flex-wrap:wrap;justify-content:center;gap:18px}.client-logo-list[aria-hidden="true"]{display:none}}
 .india-section{background:#fff;border-top:1px solid #e6eaf2;border-bottom:1px solid #e6eaf2}
 .india-grid,.guide-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:start}
 .india-grid h2,.guide-intro h2{font-size:clamp(38px,4.2vw,58px);line-height:1.12;margin:0;letter-spacing:-.06em}
@@ -58,6 +67,6 @@
 .career-interest-wide h3{margin:14px 0 10px}
 .career-interest-wide p{margin:0}
 .career-interest-wide>div:last-child{flex:none}
-@media(max-width:900px){.client-strip-inner,.india-grid,.guide-intro{display:block}.client-strip ul{justify-content:flex-start;margin-top:22px;gap:20px 35px}.india-grid>div:first-child,.guide-intro>div:first-child{margin-bottom:35px}}
+@media(max-width:900px){.india-grid,.guide-intro{display:block}.india-grid>div:first-child,.guide-intro>div:first-child{margin-bottom:35px}}
 @media(max-width:900px){.career-jobs{grid-template-columns:1fr}.career-interest-wide{display:block}.career-interest-wide>div:last-child{margin-top:20px}}
-@media(max-width:600px){.client-strip{padding:30px 0}.client-strip li{font-size:18px}.guide-list{grid-template-columns:1fr}.guide-list article{min-height:0}.india-grid p,.guide-intro p{font-size:15px}.career-interest{padding:30px;box-shadow:10px 10px 0 #e9efff}.career-job{padding:25px}.career-job-bottom{display:block}.career-job-bottom .btn{margin-top:18px}.career-job-top{font-size:9px}}
+@media(max-width:600px){.client-strip{padding:30px 0}.client-logo{flex-basis:190px;height:84px}.guide-list{grid-template-columns:1fr}.guide-list article{min-height:0}.india-grid p,.guide-intro p{font-size:15px}.career-interest{padding:30px;box-shadow:10px 10px 0 #e9efff}.career-job{padding:25px}.career-job-bottom{display:block}.career-job-bottom .btn{margin-top:18px}.career-job-top{font-size:9px}}
