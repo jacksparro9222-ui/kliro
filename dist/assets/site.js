@@ -13,9 +13,36 @@ menu?.querySelectorAll('a').forEach(anchor => anchor.addEventListener('click', (
 document.addEventListener('click', event => {
   if (!event.target.closest('.nav-group')) document.querySelectorAll('.nav-group[open]').forEach(group => group.removeAttribute('open'));
 });
-document.querySelector('#contact-form')?.addEventListener('submit', event => {
+document.querySelector('#contact-form')?.addEventListener('submit', async event => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const endpoint = form.getAttribute('action');
+  if (endpoint) {
+    const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('.form-status');
+    button.disabled = true;
+    status.hidden = false;
+    status.className = 'form-status';
+    status.textContent = 'Sending your enquiry…';
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('Formspree could not accept the enquiry');
+      form.reset();
+      status.classList.add('is-success');
+      status.textContent = 'Thanks — your enquiry has been sent. We’ll be in touch by email.';
+    } catch {
+      status.classList.add('is-error');
+      status.textContent = 'We couldn’t send your enquiry. Please try again or email hello@klirolabs.com.';
+    } finally {
+      button.disabled = false;
+    }
+    return;
+  }
   const name = String(data.get('name') || '').trim();
   const email = String(data.get('email') || '').trim();
   const company = String(data.get('company') || '').trim();

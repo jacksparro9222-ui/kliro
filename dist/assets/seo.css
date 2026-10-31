@@ -23,6 +23,10 @@
 .office-card a{color:#2457f5;font-size:12px;font-weight:800;border-bottom:1px solid currentColor;padding-bottom:5px;margin-top:auto}
 .office-card a span{margin-left:8px}
 @media(max-width:700px){.office-grid{grid-template-columns:1fr}.office-card{min-height:245px}}
+.contact-form button:disabled{cursor:wait;opacity:.7}
+.form-status{font-size:12px;line-height:1.5;margin:14px 0 0;color:#5f6b7c}
+.form-status.is-success{color:#176b45}
+.form-status.is-error{color:#b42318}
 .guide-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .guide-list article{display:grid;grid-template-columns:42px 1fr;gap:16px;background:#fff;border:1px solid #dde5f0;border-radius:12px;padding:28px;min-height:220px}
 .guide-list article>span{font-size:11px;letter-spacing:.09em;font-weight:800;color:#2457f5;padding-top:7px}
