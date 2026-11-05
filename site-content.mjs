@@ -202,5 +202,24 @@ export const industries = [
     ],
     lens: 'We make early product decisions visible through flows and prototypes, then plan delivery in useful increments. The goal is a product that serves a clear need and can adapt as that need becomes better understood.',
     services: ['custom-software-development', 'product-design-ux', 'software-modernization']
+  },
+  {
+    slug: 'professional-services', title: 'Professional services solutions', short: 'Make complex expertise easier to discover, trust and engage.',
+    eyebrow: '04 / PROFESSIONAL SERVICES', accent: 'Turn expertise into a clearer client experience.',
+    intro: 'Service businesses need digital experiences that explain their value, guide enquiries and support the work that happens after a client gets in touch.',
+    description: 'Websites and custom software for professional services firms, from clearer client journeys to internal workflow tools.',
+    challenges: [
+      ['Expertise is hard to explain', 'A broad offer and technical language make it difficult for prospects to see the right fit.'],
+      ['Enquiries lack context', 'The team spends time qualifying requests that a better journey could clarify earlier.'],
+      ['Delivery work is fragmented', 'Client information, approvals and handoffs live across disconnected systems.']
+    ],
+    solutions: [
+      ['Service websites', 'A clear offer, useful proof and guided paths for different audiences.'],
+      ['Client enquiry journeys', 'Forms and content that help people describe the need and choose a next step.'],
+      ['Client portals', 'Shared access to information, documents and relevant service workflows.'],
+      ['Operations software', 'Tools for intake, assignments, approvals and reporting where manual work slows delivery.']
+    ],
+    lens: 'We begin with how a prospect evaluates expertise and how your team delivers it. That connects the public website with the client and internal workflows behind it, without assuming every firm needs the same technology.',
+    services: ['enterprise-web-development', 'website-redesign', 'business-process-automation']
   }
 ];

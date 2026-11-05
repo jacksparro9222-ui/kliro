@@ -2,7 +2,7 @@ const header = document.querySelector('.mega-header');
 const menuButton = document.querySelector('.mega-toggle');
 const menu = document.querySelector('.mega-nav');
 const groups = [...document.querySelectorAll('.mega-item')];
-const mobileNav = window.matchMedia('(max-width: 820px)');
+const mobileNav = window.matchMedia('(max-width: 1050px)');
 
 function syncMenuLayout() {
   groups.forEach(group => {
